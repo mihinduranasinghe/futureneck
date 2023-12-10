@@ -7,8 +7,8 @@
     <!-- Your custom button colors -->
     <color name="color1">#5D3FD3</color>
     <color name="color2">#4AB19D</color>
-    <color name="color3">#F0A563</color>
-    <color name="color4">#2E4053</color>
-    <color name="color5">#7F8C8D</color>
+    <color name="color3">#2980B9</color>
+    <color name="color4">#7F8C8D</color>
+    <color name="color5">#2E4053</color>
     <color name="color6">#C0392B</color>
 </resources>
