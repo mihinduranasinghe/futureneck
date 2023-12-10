@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Primary colors -->
+    <color name="my_primary_color">#6200EE</color>
+    <color name="my_secondary_color">#3700B3</color>
+
+    <!-- Your custom button colors -->
+    <color name="color1">#5D3FD3</color>
+    <color name="color2">#4AB19D</color>
+    <color name="color3">#F0A563</color>
+    <color name="color4">#2E4053</color>
+    <color name="color5">#7F8C8D</color>
+    <color name="color6">#C0392B</color>
 </resources>
