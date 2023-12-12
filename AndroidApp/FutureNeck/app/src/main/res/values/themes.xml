@@ -1,9 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.FutureNeck" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Define custom colors here, if you have any. For example: -->
+        <item name="colorPrimary">@color/my_primary_color</item>
+        <item name="colorSecondary">@color/my_secondary_color</item>
+        <!-- Add other custom attributes if needed -->
     </style>
 
-    <style name="Theme.FutureNeck" parent="Base.Theme.FutureNeck" />
+    <style name="Theme.FutureNeck" parent="Base.Theme.FutureNeck">
+        <!-- Additional customizations if needed -->
+    </style>
+
+
 </resources>
