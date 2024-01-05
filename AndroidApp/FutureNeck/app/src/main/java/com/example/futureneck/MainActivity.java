@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         public SSHCommandExecutor(boolean isProcessWithAi) {
             this.isProcessWithAi = isProcessWithAi;
         }
-        private static final String HOSTNAME = "192.168.0.112";
+        private static final String HOSTNAME = "192.168.100.105";
         private static final String USERNAME = "pi";
         private static final String PASSWORD = "IoT@2021";
         private static final int PORT = 22;
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
             String content;
             if (isProcessWithAi) {
-                content = extractContentFromResponse(result);
+                content = "Let's see this through Futureneck AI, " + extractContentFromResponse(result);
             } else {
                 content = result;
             }
@@ -171,14 +171,26 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         }
 
         private String extractContentFromResponse(String response) {
-            String contentPrefix = "content='";
-            String contentSuffix = "', role='assistant'";
+            String contentPrefix = "content=\"";
+            String contentSuffix = "\", role='assistant'";
             int startIndex = response.indexOf(contentPrefix);
             if (startIndex != -1) {
                 startIndex += contentPrefix.length();
                 int endIndex = response.indexOf(contentSuffix, startIndex);
                 if (endIndex != -1) {
                     return response.substring(startIndex, endIndex);
+                }
+            } else {
+                contentPrefix = "content=\'";
+                contentSuffix = "\', role='assistant'";
+                startIndex = response.indexOf(contentPrefix);
+                startIndex += contentPrefix.length();
+                if (startIndex != -1) {
+                    startIndex += contentPrefix.length();
+                    int endIndex = response.indexOf(contentSuffix, startIndex);
+                    if (endIndex != -1) {
+                        return response.substring(startIndex, endIndex);
+                    }
                 }
             }
             return "Content not found in the response";
