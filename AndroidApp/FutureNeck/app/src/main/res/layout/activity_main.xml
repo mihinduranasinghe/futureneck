@@ -1,18 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="16dp"
+    android:background="@drawable/background3">
 
+    <!-- Title -->
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Future Neck"
+        android:textSize="32sp"
+        android:textColor="#FFFF"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="18dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/subTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A Futuristic Wearable Scanner for making life easier"
+        android:textSize="12sp"
+        android:textColor="#FFFF"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="62dp"/>
+
+    <TextView
+        android:id="@+id/subTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Specially designed for visually impaired and people with language barriers"
+        android:textSize="10sp"
+        android:textColor="#FFFF"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="82dp"/>
+
+    <!-- GridLayout for Buttons -->
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitle"
+        android:padding="16dp"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+        <!-- Translate Button -->
+        <Button
+            android:id="@+id/btnDetectObject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="Visual scan"
+            android:backgroundTint="@color/color1"
+            android:textColor="#FFFFFF"
+            android:layout_margin="8dp"
+            android:minHeight="100dp" />
+
+        <!-- Read Text Button -->
+        <Button
+            android:id="@+id/btnProcessAI"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="See through AI"
+            android:backgroundTint="@color/color2"
+            android:textColor="#FFFFFF"
+            android:layout_margin="8dp"
+            android:minHeight="100dp" />
+
+        <!-- Detect Object Button -->
+        <Button
+            android:id="@+id/btnTranslate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="Translate it"
+            android:backgroundTint="@color/color3"
+            android:textColor="#FFFFFF"
+            android:layout_margin="8dp"
+            android:minHeight="100dp" />
+
+        <!-- Process with AI Button -->
+        <Button
+            android:id="@+id/btnReadText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="Read it"
+            android:backgroundTint="@color/color4"
+            android:textColor="#FFFFFF"
+            android:layout_margin="8dp"
+            android:minHeight="100dp" />
+
+        <Button
+            android:id="@+id/btnQRScan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="Scan QR"
+            android:backgroundTint="@color/color5"
+            android:textColor="#FFFFFF"
+            android:layout_margin="8dp"
+            android:minHeight="100dp" />
+
+        <Button
+            android:id="@+id/btnWeatherNow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="Weather Like?"
+            android:backgroundTint="@color/color6"
+            android:textColor="#FFFFFF"
+            android:layout_margin="8dp"
+            android:minHeight="100dp" />
+    </GridLayout>
+
+
+    <!-- Output TextView -->
+    <TextView
+        android:id="@+id/textViewOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gridLayout"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:textColor="#37474F"
+        android:background="@drawable/textview_border"
+        android:layout_marginTop="26dp"
+        android:scrollbars="vertical"
+        android:text="Futureneck gives a nicer experience with AI"/>
+
+</RelativeLayout>
