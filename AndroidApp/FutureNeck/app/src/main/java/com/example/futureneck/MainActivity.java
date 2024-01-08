@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     private ProgressDialog progressDialog;
 
-    Button btnTranslate, btnReadText, btnDetectObject, btnProcessWithAi;
+    Button btnTranslate, btnReadText, btnDetectObject, btnProcessWithAi, btnQRScan, btnWeatherNow;
     TextView textViewOutput;
     TextToSpeech textToSpeech;
 
@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         btnReadText = findViewById(R.id.btnReadText);
         btnDetectObject = findViewById(R.id.btnDetectObject);
         btnProcessWithAi = findViewById(R.id.btnProcessAI);
+        btnQRScan = findViewById(R.id.btnQRScan);
+        btnWeatherNow = findViewById(R.id.btnWeatherNow);
         textViewOutput = findViewById(R.id.textViewOutput);
         textViewOutput.setMovementMethod(new ScrollingMovementMethod());
 
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         btnReadText.setOnClickListener(v -> performAction("futureneckTextDetection"));
         btnDetectObject.setOnClickListener(v -> performAction("futureneckObjectDetection"));
         btnProcessWithAi.setOnClickListener(v -> performAction("futureneckProcessWithAI"));
+        btnQRScan.setOnClickListener(v -> performAction("futureneckQRScanner"));
+        btnWeatherNow.setOnClickListener(v -> performAction("iot_TellstickDuo/script"));
     }
 
     private void performAction(String action) {
@@ -89,9 +93,9 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         public SSHCommandExecutor(boolean isProcessWithAi) {
             this.isProcessWithAi = isProcessWithAi;
         }
-        private static final String HOSTNAME = "192.168.100.105";
+        private static final String HOSTNAME = "192.168.0.112"; //Change this whenever you change the IP address of the Raspberry Pi
         private static final String USERNAME = "pi";
-        private static final String PASSWORD = "IoT@2021";
+        private static final String PASSWORD = "<Password>";
         private static final int PORT = 22;
 
         @Override
@@ -104,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         protected String doInBackground(String... commands) {
             String command = commands[0];
             Log.d("SSHCommandExecutor", "Executing command: " + command);
+            StringBuilder output = new StringBuilder();
+
             try {
                 JSch jsch = new JSch();
                 Session session = jsch.getSession(USERNAME, HOSTNAME, PORT);
@@ -116,33 +122,28 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 session.connect();
 
                 ChannelExec channel = (ChannelExec) session.openChannel("exec");
-                channel.setCommand(commands[0]);
+                channel.setCommand(command);
                 InputStream in = channel.getInputStream();
                 channel.connect();
 
-                StringBuilder output = new StringBuilder();
                 byte[] buffer = new byte[1024];
-                while (true) {
-                    while (in.available() > 0) {
-                        int i = in.read(buffer, 0, 1024);
-                        if (i < 0) break;
-                        output.append(new String(buffer, 0, i));
-                    }
-                    if (channel.isClosed()) {
-                        break;
-                    }
-                    Thread.sleep(1000);
+                int i;
+                while ((i = in.read(buffer)) != -1) {
+                    output.append(new String(buffer, 0, i));
                 }
+
                 channel.disconnect();
                 session.disconnect();
 
                 Log.d("SSHCommandExecutor", "Command execution completed");
-                return output.toString();
             } catch (Exception e) {
                 e.printStackTrace();
                 return "Error: " + e.getMessage();
             }
+
+            return output.toString();
         }
+
 
         @Override
         protected void onPostExecute(String result) {
