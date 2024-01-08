@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     private void performAction(String action) {
         System.out.println("Button clicked: " + action);
-        String command = "export OPENAI_API_KEY=\"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\" && python3 /home/pi/futureneck/" + action + ".py";
+        String command = "export OPENAI_API_KEY=\"<OpenAIAPIKey>\" && python3 /home/pi/futureneck/" + action + ".py";
         new SSHCommandExecutor(action.equals("futureneckProcessWithAI")).execute(command);
     }
 
