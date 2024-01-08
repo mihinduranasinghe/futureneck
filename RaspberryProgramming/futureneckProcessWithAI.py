@@ -49,7 +49,7 @@ def read_image_file(file_path):
 
 def process_with_openai(text):
     # Set the OpenAI API key
-    openai_api_key = "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"
+    openai_api_key = "<OpenAI-APIKey>"
     openai.api_key = openai_api_key
 
     # Create the OpenAI client
@@ -60,7 +60,7 @@ def process_with_openai(text):
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": text},
-            {"role": "user", "content": "Please check this and give an answer."}
+            {"role": "user", "content": "Please check this and describe and give your thoughts in a summarized way."}
         ]
     )
     # Print the response
